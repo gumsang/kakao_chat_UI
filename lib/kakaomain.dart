@@ -15,7 +15,9 @@ class _KakaoMainState extends State<KakaoMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(),
+        child: SizedBox(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
       ),
       // bottom navigation 선언
       bottomNavigationBar: BottomNavigationBar(
@@ -34,8 +36,10 @@ class _KakaoMainState extends State<KakaoMain> {
           ),
         ],
         currentIndex: _selectedIndex, // 지정 인덱스로 이동
-        selectedItemColor: Colors.lightGreen,
+        selectedItemColor: Colors.black,
         onTap: _onItemTapped, // 선언했던 onItemTapped
+        backgroundColor: Colors.grey[200],
+        elevation: 0,
       ),
     );
   }
@@ -43,8 +47,8 @@ class _KakaoMainState extends State<KakaoMain> {
   int _selectedIndex = 0;
   // 선택된 페이지의 인덱스 넘버 초기화
   final List<Widget> _widgetOptions = <Widget>[
-    KakaoChat(),
     KakaoFriends(),
+    KakaoChat(),
     KakaoMore(),
   ];
   // 3개의 페이지를 연결할 예정이므로 3개의 페이지를 여기서 지정해준다. 탭 레이아웃은 3개.
