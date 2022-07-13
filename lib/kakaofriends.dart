@@ -12,6 +12,7 @@ class KakaoFriends extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 친구 , 검색,친구추가,뮤직,설정 아이콘
               Row(
@@ -60,8 +61,23 @@ class KakaoFriends extends StatelessWidget {
                 ],
               ),
               //////////////////////
-              SizedBox(
+              const SizedBox(
                 height: 15,
+              ),
+              MyStatus(myProfile),
+              const Divider(
+                height: 30,
+                // color: Colors.grey,
+                thickness: 2,
+              ),
+              Text(
+                "친구 ${myFriends.length}",
+                style: const TextStyle(
+                  color: Colors.black54,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
               ),
               Expanded(
                 child: ListView.builder(

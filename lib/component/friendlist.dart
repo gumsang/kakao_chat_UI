@@ -33,8 +33,8 @@ class MakeFriendList extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        NameAndStatus(_friends),
-        SizedBox(
+        FreindsStatus(_friends),
+        const SizedBox(
           height: 10,
         ),
       ],
@@ -42,8 +42,8 @@ class MakeFriendList extends StatelessWidget {
   }
 }
 
-class NameAndStatus extends StatelessWidget {
-  const NameAndStatus(this._friends, {Key? key}) : super(key: key);
+class FreindsStatus extends StatelessWidget {
+  const FreindsStatus(this._friends, {Key? key}) : super(key: key);
 
   final Friends _friends;
 
@@ -55,13 +55,16 @@ class NameAndStatus extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(18),
           child: SizedBox(
-            width: 60,
-            height: 60,
+            width: 55,
+            height: 55,
             child: Image.network(
               _friends._nameImage,
               fit: BoxFit.cover,
             ),
           ),
+        ),
+        const SizedBox(
+          width: 10,
         ),
         Container(
           child: (_friends._statusMessage.isEmpty)
@@ -74,7 +77,7 @@ class NameAndStatus extends StatelessWidget {
                   ),
                 ))
               : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -83,6 +86,74 @@ class NameAndStatus extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
+                    ),
+                    Text(
+                      _friends._statusMessage,
+                      style: const TextStyle(
+                        fontSize: 14,
+                      ),
+                    )
+                  ],
+                ),
+        ),
+
+        // const Divider(
+        //   height: 1,
+        //   thickness: 1,
+        //   color: Colors.grey,
+        // ),
+      ],
+    );
+  }
+}
+
+class MyStatus extends StatelessWidget {
+  const MyStatus(this._friends, {Key? key}) : super(key: key);
+
+  final Friends _friends;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(18),
+          child: SizedBox(
+            width: 75,
+            height: 75,
+            child: Image.network(
+              _friends._nameImage,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Container(
+          child: (_friends._statusMessage.isEmpty)
+              ? Center(
+                  child: Text(
+                  _friends._name,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ))
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _friends._name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     Text(
                       _friends._statusMessage,
